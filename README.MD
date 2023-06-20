@@ -29,6 +29,20 @@ Task was to recreate Triple EMA (TEMA) strategy that works same as [this script]
 - Change API key and secret for binance and telegram notifications in ```.env.dist```, rename it to ```.env```. 
 - Run ```python tema_complete.py``` in ```/``` directory.
 
+#### Docker
+- Using docker:
+  - Build image: ```docker build -t tema:tema .```
+  - Once image is built, run container: ```docker run -it --rm --name tema tema:tema``` where ```-it``` is for interactive mode, ```--rm``` is for removing container after it is stopped, ```--name``` is for naming container, ```tema:tema``` is image name:tag.
+  - Stop container: ```docker stop tema```
+- Using docker with .env:
+  - Build image: ```docker build --env-file .env -t tema:tema .```
+  - Once image is built, run container: ```docker run -it --rm --name tema --env-file .env tema:tema``` where ```--env-file``` is for passing .env file to container.
+  - Stop container: ```docker stop tema```
+- Using docker-compose (.env file is passed automatically):
+  - Build image: ```docker-compose build``` (optional, second step will build image if it is not built yet)
+  - Once image is built, run container: ```docker-compose up```. ```-d``` flag can be used to run container in background.
+  - Stop container: ```docker-compose down```
+- To enter container shell: ```docker exec -it tema bash``` where ```tema``` is container name.
 
 #### Contributing
 Pull requests are welcome. For major changes please open an issue first to discuss what you would like to change.
